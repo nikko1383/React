@@ -48,7 +48,6 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
             );
         });
 
-        console.log(menu);
 
         return (
             <div className="container">

@@ -14,17 +14,24 @@ class Dishdetail extends Component {
 
             const cs = comments.map((comment) => {
                 return (
-                    <div>
+                    <li key={comment.id}>
                         <p>{comment.comment}</p>
-                        <p> -- {comment.author}</p>
-                    </div>
+                        <p> -- {comment.author},{" "}
+                            {new Intl.DateTimeFormat("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "2-digit",
+                            }).format(new Date(Date.parse(comment.date)))}</p>
+                    </li>
                 );
             });
 
             return(
-                <div>
+                <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
+                    <ul className="list-unstyled">
                     { cs }
+                    </ul>
                 </div>
             );
             }else{
@@ -45,9 +52,7 @@ class Dishdetail extends Component {
                             </CardBody>
                         </Card>
                     </div>
-                    <div  className="col-12 col-md-5 m-1">
-                        {this.renderComments(this.props.selectedDish.comments)}
-                    </div>
+                    {this.renderComments(this.props.selectedDish.comments)}
                 </div>
             );
         else
