@@ -6,7 +6,7 @@ class Dishdetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedDish: null
+            dish: null
         }
     }
     renderComments(comments) {
@@ -40,19 +40,25 @@ class Dishdetail extends Component {
             );}
     }
     render() {
-        if (this.props.selectedDish != null)
+        if (this.props.dish != null)
             return(
-                <div className="row">
-                    <div  className="col-12 col-md-5 m-1">
-                        <Card>
-                            <CardImg top src={this.props.selectedDish.image} alt={this.props.selectedDish.name} />
-                                <CardBody>
-                                <CardTitle>{this.props.selectedDish.name}</CardTitle>
-                                <CardText>{this.props.selectedDish.description}</CardText>
-                            </CardBody>
-                        </Card>
+                <div className="container">
+                    <div className="row">
+                        <div  className="col-12 col-md-5 m-1">
+                            <Card>
+                                <CardImg src={this.props.dish.image} alt={this.props.dish.name} />
+                                    <CardBody>
+                                    <CardImgOverlay>
+                                        <CardTitle>{this.props.dish.name}</CardTitle>
+                                    </CardImgOverlay>
+                                    <CardText>{this.props.dish.description}</CardText>
+                                </CardBody>
+                            </Card>
+                        </div>
+                        <div  className="col-12 col-md-5 m-1">
+                            {this.renderComments(this.props.dish.comments)}
+                        </div>
                     </div>
-                    {this.renderComments(this.props.selectedDish.comments)}
                 </div>
             );
         else
