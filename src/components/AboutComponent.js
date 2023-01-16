@@ -3,11 +3,10 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 
 
-function RenderLeader({leaders}) {
-    if (leaders != null){
-        const leaderss = leaders.map((leader) => {
-            return (
-                <Media tag="li">
+function RenderLeader({leader}) {
+    if (leader != null){
+        return(
+            <Media tag="li">
                     <Media left middle>
                         <Media object src={leader.image} alt={leader.name} />
                     </Media>
@@ -17,10 +16,6 @@ function RenderLeader({leaders}) {
                         <p>{leader.description}</p>
                     </Media>
                 </Media>
-            );
-        });
-        return(
-            <Media list>{leaderss}</Media>
         );
         }else{
         return(
@@ -30,11 +25,12 @@ function RenderLeader({leaders}) {
 
 function About(props) {
 
-    // const leaders = props.leaders.map((leader) => {
-    //     return (
-    //         <p>Leader {leader.name}</p>
-    //     );
-    // });
+    const leaders = props.leaders.map((leader) => {
+        return (
+            // <p>Leader {leader.name}</p>
+            <RenderLeader leader={leader}/>
+        );
+    });
 
     return(
         <div className="container">
@@ -91,10 +87,10 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    {/* <Media list>
+                    <Media list>
                         {leaders}
-                    </Media> */}
-                    <RenderLeader leaders={props.leaders}/>
+                    </Media>
+                    {/* <RenderLeader leaders={props.leaders}/> */}
                 </div>
             </div>
         </div>
